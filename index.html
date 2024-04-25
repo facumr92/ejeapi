@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Formulario -->
+    <div class="container">
+        <h2>Contacto</h2>
+
+        <form action="" method="post">
+
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder=" Escribe tu nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pass">Password:</label>
+                <input type="password" id="pass" name="pass" placeholder=" Escribe una contraseña" required minlength="8">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Escribe tu correo " required  >
+            </div>
+            <div class="form-group">
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+            </div>
+            <button type="submit">Enviar</button>
+            <button type= "reset"> Cancelar </button>
+            
+        </form>
+    </div>
+</body>
+</html>
