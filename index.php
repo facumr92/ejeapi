@@ -1,53 +1,78 @@
 <?php
 
- $API= "https://whenisthenextmcufilm.com/api";
- $ch = curl_init($API);
 
-//detiene  la ejecución si hay un error en el cURL
- curl_setopt($ch, CURLOPT_RETURNTRANSFER, true );
+require("procesarAPI.php");
 
- //ejecuta la petición de la API
- $resultado= curl_exec( $ch );
+ $API_marvel= "https://whenisthenextmcufilm.com/api";
+ $API_comments= "https://jsonplaceholder.typicode.com/comments";
+ 
+
+ $datos_marvel= procesar_datos_API($API_marvel);
+ $datos_comments= procesar_datos_API($API_comments);
 
 
-//Decodifica la respuesta JSON en un array asociativo
- $datos=  json_decode($resultado,true); 
- curl_close( $ch );
-
-//se debe mostrar usando var_dump o print_r ya qque es un array asociativo
-
-//var_dump($datos);
-
+ 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-</head>
-<body>
-
+<?php require("header.php"); ?>
 
 <section>
 
 <div class="container-peli">
-<h2> Siguiente pelicula de Marvel: <?= $datos['title']; ?> </h2>
+<h2> Siguiente pelicula de Marvel: <?= $datos_marvel['title']; ?> </h2>
 
 
-<img src=" <?= $datos['poster_url']; ?>" alt="">
-<p> fecha de estreno: <?= $datos['release_date']; ?> </p>
-<p> faltan: <?= $datos['days_until']?> días para el estreno</p>
+<img src=" <?= $datos_marvel['poster_url']; ?>" alt="">
+<p> fecha de estreno: <?= $datos_marvel['release_date']; ?> </p>
+<p> faltan: <?= $datos_marvel['days_until']?> días para el estreno</p>
 </div>
 
 </section>
 
 
-<style>
+<section>
 
 
-</style>
+<h2>Comentarios</h2>
+
+
+<div class="container-padre">
+
+    <div class="hijo">
+
+
+<!--  
+    
+puedo insertar uno a uno de la forma;
+
+
+$datos_comments[0]['valor'];
+
+
+-->
+    
+
+
+<?php foreach($datos_comments as $comment): ?>
+
+
+    <p>comentario: <?= $comment['id']; ?></p> 
+
+     <p>Nombre: <?= $comment['name']; ?></p> 
+
+    <p>Email: <?= $comment['email']; ?>  </p>
+
+     <p>Email: <?= $comment['body']; ?>  </p>
+
+<hr>
+    
+<?php endforeach; ?>
+</div>
+
+
+</div>
+
+
+
 </body>
 </html>
